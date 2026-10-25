@@ -1,0 +1,127 @@
+/* ==========================================================================
+   AN NHIÊN – ĐÀ LẠT MỘNG MƠ | Custom Stylesheet
+   Tác giả: Trịnh Thị An – Thương hiệu: An Nhiên AI (TTA)
+   ========================================================================== */
+
+    :root {
+      --color-pine: #244A3B;
+      --color-sage: #8DAA91;
+      --color-mist: #F6F7F2;
+      --color-cream: #F3E8D5;
+      --color-sun: #D6B66B;
+      --color-wood: #745843;
+      --base-font-size: 18px;
+    }
+
+    html {
+      font-size: var(--base-font-size);
+      background-color: var(--color-mist);
+      color: #1E2D26;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      line-height: 1.75;
+    }
+
+    body.font-large {
+      --base-font-size: 20px;
+    }
+
+    h1, h2, h3, h4, .font-editorial {
+      font-family: 'Playfair Display', Georgia, serif;
+      line-height: 1.3;
+    }
+
+    /* Hiệu ứng sương mù và nắng sớm tinh tế */
+    @keyframes floatMist {
+      0% { transform: translateX(-4%) translateY(0) scale(1); opacity: 0.28; }
+      50% { transform: translateX(4%) translateY(-8px) scale(1.04); opacity: 0.42; }
+      100% { transform: translateX(-4%) translateY(0) scale(1); opacity: 0.28; }
+    }
+
+    .mist-overlay {
+      background: radial-gradient(ellipse at 30% 20%, rgba(255, 250, 235, 0.35) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 80%, rgba(246, 247, 242, 0.4) 0%, transparent 65%);
+      animation: floatMist 18s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* Phóng to ảnh tinh tế khi di chuột */
+    .img-zoom-container {
+      overflow: hidden;
+    }
+    .img-zoom-container img {
+      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .img-zoom-container:hover img {
+      transform: scale(1.06);
+    }
+
+    /* Xuất hiện nhẹ nhàng khi cuộn trang */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+    }
+    .reveal-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Chế độ giảm chuyển động (Accessibility & OS prefers-reduced-motion) */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .mist-overlay { animation: none !important; }
+      .reveal-item { opacity: 1 !important; transform: none !important; }
+    }
+    body.reduce-motion *, body.reduce-motion ::before, body.reduce-motion ::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+    body.reduce-motion .reveal-item {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    body.reduce-motion .img-zoom-container:hover img {
+      transform: none !important;
+    }
+
+    /* Khung giả lập xem trước trên điện thoại */
+    body.mobile-preview-mode #main-app-wrapper {
+      max-width: 412px;
+      margin: 1.5rem auto;
+      border: 10px solid #244A3B;
+      border-radius: 36px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+      overflow-x: hidden;
+      background: #F6F7F2;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F3E8D5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #8DAA91;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #244A3B;
+    }
+
+    /* Leaflet custom popup */
+    .leaflet-popup-content-wrapper {
+      background: #F6F7F2;
+      color: #1E2D26;
+      border-radius: 14px;
+      border: 1px solid #D6B66B;
+      font-family: 'Be Vietnam Pro', sans-serif;
+    }
